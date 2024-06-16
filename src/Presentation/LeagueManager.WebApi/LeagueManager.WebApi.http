@@ -1,0 +1,6 @@
+@LeagueManager.WebApi_HostAddress = http://localhost:5171
+
+GET {{LeagueManager.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
