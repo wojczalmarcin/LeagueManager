@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.6" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\LeagueManager.League.Application\LeagueManager.League.Application.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Domain\LeagueManager.League.Domain.csproj" />
+    <ProjectReference Include="..\LeagueManager.League.Infrastructure\LeagueManager.League.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
