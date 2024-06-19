@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Riok.Mapperly" Version="3.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\LeagueManager.League.Application\LeagueManager.League.Application.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Domain\LeagueManager.League.Domain.csproj" />
   </ItemGroup>
 

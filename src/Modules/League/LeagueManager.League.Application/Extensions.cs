@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using FluentValidation.Results;
+using LeagueManager.Shared.Abstractions.Domain;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -10,4 +12,8 @@ public static class Extensions
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
         return services;
     }
+
+    internal static ValidationResult Map(this DomainValidationResult validationResult)
+        => new(validationResult.ValidationErrors.
+            Select(x => new ValidationFailure(string.Empty, x)));
 }

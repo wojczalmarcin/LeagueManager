@@ -6,5 +6,5 @@ namespace LeagueManager.Domain.Entities.Seasons;
 public interface ISeasonFactory
 {
     Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate,
-        IEnumerable<Guid> teamsIds, Sponsor? sponsor = null);
+        IEnumerable<Guid> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default);
 }

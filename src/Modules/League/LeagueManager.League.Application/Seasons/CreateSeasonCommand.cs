@@ -1,16 +1,18 @@
-﻿using LeagueManager.Domain.Entities.Seasons;
+﻿using FluentValidation.Results;
+using LeagueManager.Domain.Entities.Seasons;
 using LeagueManager.Domain.ValuesObjects;
+using LeagueManager.League.Application;
 using LeagueManager.Shared.Abstractions.Domain;
 using MediatR;
 
-namespace LeagueManager.League.Application.Commands.Seasons;
+namespace LeagueManager.Application.Seasons;
 public record CreateSeasonCommand(
     DateOnly StartDate,
     DateOnly EndDate,
-    IEnumerable<Guid> TeamsIds, 
-    string? SponsorName) : IRequest<DomainValidationResult>;
+    IEnumerable<Guid> TeamsIds,
+    string? SponsorName) : IRequest<ValidationResult>;
 
-public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, DomainValidationResult>
+public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, ValidationResult>
 {
     private readonly ISeasonFactory _seasonFactory;
     private readonly ISeasonRepository _seasonRepository;
@@ -21,17 +23,17 @@ public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, D
         _seasonRepository = seasonRepository;
     }
 
-    public async Task<DomainValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
+    public async Task<ValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
     {
-        var result = await _seasonFactory.CreateAsync(request.StartDate, request.EndDate, 
+        var result = await _seasonFactory.CreateAsync(request.StartDate, request.EndDate,
             request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null);
 
         var validationResult = new DomainValidationResult();
 
         result.Switch(
-            async season => await _seasonRepository.CreateAsync(season),
+            async season => await _seasonRepository.CreateAsync(season, cancellationToken),
             vr => validationResult = vr
             );
-        return validationResult;
+        return validationResult.Map();
     }
 }

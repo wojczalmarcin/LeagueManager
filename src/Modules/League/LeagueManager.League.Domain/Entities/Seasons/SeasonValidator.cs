@@ -12,9 +12,9 @@ internal class SeasonValidator : ISeasonValidator
         _seasonRepository = seasonRepository;
     }
 
-    public async Task<DomainValidationResult> ValidateDateRangeAsync(DateRange newSeasonDateRange)
+    public async Task<DomainValidationResult> ValidateDateRangeAsync(DateRange newSeasonDateRange, CancellationToken cancellationToken = default)
     {
-        var seasons = (await _seasonRepository.GetAsync()).ToList();
+        var seasons = (await _seasonRepository.GetAsync(cancellationToken)).ToList();
         var result = new DomainValidationResult();
 
         foreach (var season in seasons)

@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.League.WebApi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.WebApi", "src\Presentation\LeagueManager.WebApi\LeagueManager.WebApi.csproj", "{A449444F-033C-4D4E-A925-6288E073028B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.League.Infrastructure", "src\Modules\League\LeagueManager.League.Infrastructure\LeagueManager.League.Infrastructure.csproj", "{48ADEB7C-3A55-4B28-923D-E6EC0A9D514E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.League.Infrastructure", "src\Modules\League\LeagueManager.League.Infrastructure\LeagueManager.League.Infrastructure.csproj", "{48ADEB7C-3A55-4B28-923D-E6EC0A9D514E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

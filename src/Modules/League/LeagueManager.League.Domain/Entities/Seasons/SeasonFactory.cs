@@ -13,7 +13,7 @@ internal sealed class SeasonFactory : ISeasonFactory
     }
 
     public async Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate, 
-        IEnumerable<Guid> teamsIds, Sponsor? sponsor = null)
+        IEnumerable<Guid> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
     {
         try
         {
