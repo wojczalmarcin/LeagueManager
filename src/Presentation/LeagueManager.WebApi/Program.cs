@@ -1,4 +1,5 @@
 using LeagueManager.League.WebApi;
+using LeagueManager.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+var root = app.MapGroup(string.Empty);
+root.AddEndpointFilterFactory(ValidationFilters.FluentValidationFilterFactory);
 
 app.UseLeagueWebApi();
 

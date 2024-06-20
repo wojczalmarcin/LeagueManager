@@ -2,6 +2,8 @@
 using LeagueManager.Shared.Abstractions.Domain;
 
 namespace LeagueManager.League.Domain.Entities.Players;
+
+// Separate module ?
 public sealed class Player : IAgregateRoot
 {
     public Guid Id { get; }
