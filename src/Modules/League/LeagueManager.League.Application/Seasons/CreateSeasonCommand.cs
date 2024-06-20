@@ -7,8 +7,8 @@ using MediatR;
 
 namespace LeagueManager.Application.Seasons;
 public record CreateSeasonCommand(
-    DateOnly StartDate,
-    DateOnly EndDate,
+    DateTime StartDate,
+    DateTime EndDate,
     IEnumerable<Guid> TeamsIds,
     string? SponsorName) : IRequest<ValidationResult>;
 
@@ -25,7 +25,7 @@ public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, V
 
     public async Task<ValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
     {
-        var result = await _seasonFactory.CreateAsync(request.StartDate, request.EndDate,
+        var result = await _seasonFactory.CreateAsync(DateOnly.FromDateTime(request.StartDate), DateOnly.FromDateTime(request.EndDate),
             request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null);
 
         var validationResult = new DomainValidationResult();

@@ -1,7 +1,10 @@
-﻿using LeagueManager.League.Application;
+﻿using FluentValidation;
+using LeagueManager.Application.Seasons;
+using LeagueManager.League.Application;
 using LeagueManager.League.Domain;
 using LeagueManager.League.Infrastructure;
 using LeagueManager.League.WebApi.Endpoints;
+using LeagueManager.League.WebApi.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -13,6 +16,9 @@ public static class Extensions
         services.AddDomain();
         services.AddApplication();
         services.AddInfrastructure();
+
+        services.AddScoped<IValidator<CreateSeasonCommand>, CreateSeasonValidator>();
+
         return services;
     }
 

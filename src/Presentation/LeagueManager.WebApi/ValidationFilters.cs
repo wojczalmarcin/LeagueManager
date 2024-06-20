@@ -4,11 +4,6 @@ using System.Reflection;
 
 namespace LeagueManager.WebApi;
 
-[AttributeUsage(AttributeTargets.Parameter, AllowMultiple = false)]
-public class ValidateAttribute : Attribute
-{
-}
-
 public static class ValidationFilters
 {
     public static EndpointFilterDelegate FluentValidationFilterFactory(EndpointFilterFactoryContext context, EndpointFilterDelegate next)

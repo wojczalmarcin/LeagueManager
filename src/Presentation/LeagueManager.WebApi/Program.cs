@@ -22,6 +22,10 @@ app.UseHttpsRedirection();
 
 var root = app.MapGroup(string.Empty);
 root.AddEndpointFilterFactory(ValidationFilters.FluentValidationFilterFactory);
+app.UseExceptionHandler(exceptionHandlerApp
+    => exceptionHandlerApp.Run(async context
+        => await Results.Problem("Unexpected internal error.")
+                     .ExecuteAsync(context)));
 
 app.UseLeagueWebApi();
 
