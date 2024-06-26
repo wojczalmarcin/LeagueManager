@@ -14,7 +14,7 @@ public sealed class Match : IEntity
 
     public SeasonFixture Fixture { get; }
 
-    public bool IsFinished { get; }
+    public bool IsFinished { get; private set; }
 
     public int? StadiumId { get; }
 
@@ -22,9 +22,10 @@ public sealed class Match : IEntity
 
     public IEnumerable<MatchStat> MatchStats => MatchStats;
 
-    public int HomeTeamPoints => _matchstats.Where(x => x.TeamId == TeamHomeId && x.StatType.IsPoint).Count();
+    public int HomeTeamPoints => _matchstats.Where(x => x.TeamId == TeamHomeId).Sum(x => x.StatType.Points);
 
-    public int AwayTeamPoints => _matchstats.Where(x => x.TeamId == TeamAwayId && x.StatType.IsPoint).Count();
+    public int AwayTeamPoints => _matchstats.Where(x => x.TeamId == TeamAwayId).Sum(x => x.StatType.Points);
+
 
     private readonly TimeProvider _timeProvider;
 
@@ -73,6 +74,13 @@ public sealed class Match : IEntity
         var result = new DomainValidationResult();
         _matchstats.Add(new MatchStat(playerId, teamId, statType, minute));
 
+        return result;
+    }
+
+    public DomainValidationResult Finish()
+    {
+        var result = new DomainValidationResult();
+        IsFinished = true;
         return result;
     }
 }

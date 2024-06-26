@@ -7,11 +7,11 @@ public sealed class MatchStatType : IEntity
 
     public string Name { get; }
 
-    public bool IsPoint { get; set; }
+    public int Points { get; set; }
 
-    public MatchStatType(string name, bool isPoint)
+    public MatchStatType(string name, int points)
     {
         Name = name;
-        IsPoint = isPoint;
+        Points = points;
     }
 }

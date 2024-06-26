@@ -6,13 +6,13 @@ public sealed class GetCurrentSeasonQuery : IRequest<SeasonDto>
 {
 }
 
-public class CreateSeasonCommandHandler : IRequestHandler<GetCurrentSeasonQuery, SeasonDto>
+public class GetCurrentSeasonQueryHandler : IRequestHandler<GetCurrentSeasonQuery, SeasonDto>
 {
     private readonly ISeasonRepository _seasonRepository;
 
     private readonly ISeasonContractMapper _seasonContractMapper;
 
-    public CreateSeasonCommandHandler(ISeasonRepository seasonRepository, ISeasonContractMapper seasonContractMapper)
+    public GetCurrentSeasonQueryHandler(ISeasonRepository seasonRepository, ISeasonContractMapper seasonContractMapper)
     {
         _seasonRepository = seasonRepository;
         _seasonContractMapper = seasonContractMapper;

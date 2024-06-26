@@ -25,7 +25,7 @@ public sealed class Team : IAgregateRoot
         _playersIds = [];
     }
 
-    public async Task<DomainValidationResult> AddPlayerAsync(Player player)
+    public DomainValidationResult AddPlayerAsync(Player player)
     {
         var result = new DomainValidationResult();
         _playersIds.Add(player.Id);
