@@ -7,10 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.6" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.4" />
     <PackageReference Include="Riok.Mapperly" Version="3.6.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Application\LeagueManager.League.Application.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Domain\LeagueManager.League.Domain.csproj" />
   </ItemGroup>

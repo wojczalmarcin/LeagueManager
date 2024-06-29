@@ -38,5 +38,3 @@ public sealed class GetSeasonTableQueryHandler : IRequestHandler<GetSeasonTableQ
         return table;
     }
 }
-
-
