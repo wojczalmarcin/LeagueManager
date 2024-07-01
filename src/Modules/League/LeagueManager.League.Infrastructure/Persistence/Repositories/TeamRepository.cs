@@ -9,12 +9,12 @@ internal sealed class TeamRepository : ITeamRepository
         throw new NotImplementedException();
     }
 
-    public Task<IReadOnlyList<Team>> GetAsync(IEnumerable<Guid> teamsIds)
+    public Task<IReadOnlyList<Team>> GetAsync(IEnumerable<TeamId> teamsIds)
     {
         throw new NotImplementedException();
     }
 
-    public Task<Team> GetAsync(Guid teamId)
+    public Task<Team> GetAsync(TeamId teamId)
     {
         throw new NotImplementedException();
     }

@@ -1,13 +1,10 @@
 ﻿using LeagueManager.League.Domain.ValuesObjects;
-using LeagueManager.Shared.Abstractions.Domain;
 
 namespace LeagueManager.League.Domain.Entities.Players;
 
 // Separate module ?
-public sealed class Player : IAgregateRoot
+public sealed class Player : AgregateRoot<PlayerId>
 {
-    public Guid Id { get; }
-
     public PersonalInfo PersonalInfo { get; }
 
     public Player(PersonalInfo personalInfo)
@@ -15,3 +12,5 @@ public sealed class Player : IAgregateRoot
         PersonalInfo = personalInfo;
     }
 }
+
+public sealed record PlayerId(Guid Value) : IValueObject;

@@ -1,21 +1,18 @@
 ﻿using LeagueManager.League.Domain.Entities.Players;
 using LeagueManager.League.Domain.ValuesObjects;
-using LeagueManager.Shared.Abstractions.Domain;
 
 namespace LeagueManager.Domain.Entities.Teams;
-public sealed class Team : IAgregateRoot
+public sealed class Team : AgregateRoot<TeamId>
 {
-    public Guid Id { get; }
-
     public string Name { get; }
 
     public Address Address { get; }
 
     public Stadium Stadium { get; }
 
-    public IEnumerable<Guid> PlayersIds => PlayersIds;
+    public IEnumerable<PlayerId> PlayersIds => PlayersIds;
 
-    private List<Guid> _playersIds;
+    private readonly List<PlayerId> _playersIds;
 
     internal Team(string name, Address address, Stadium stadium)
     {
@@ -33,3 +30,5 @@ public sealed class Team : IAgregateRoot
         return result;
     }
 }
+
+public sealed record TeamId(Guid Value) : IValueObject;

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LeagueManager.Statistics.Application.Contracts;
+﻿namespace LeagueManager.Statistics.Application.Contracts;
 public class PlayerDto
 {
     public Guid Id { get; }

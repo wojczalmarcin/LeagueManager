@@ -15,7 +15,7 @@ public sealed class GetSeasonTableQueryHandler : IRequestHandler<GetSeasonTableQ
 
     private readonly ITeamRepository _teamRepository;
 
-    public GetSeasonTableQueryHandler(ISeasonRepository seasonRepository, 
+    public GetSeasonTableQueryHandler(ISeasonRepository seasonRepository,
         ISeasonContractMapper seasonContractMapper, ITeamRepository teamRepository)
     {
         _seasonRepository = seasonRepository;
@@ -33,7 +33,7 @@ public sealed class GetSeasonTableQueryHandler : IRequestHandler<GetSeasonTableQ
 
         foreach (var item in table.Teams)
         {
-            item.Team.Name = teams.First(x => x.Id == item.Team.Id).Name;
+            item.Team.Name = teams.First(x => x.Id.Value == item.Team.Id).Name;
         }
         return table;
     }

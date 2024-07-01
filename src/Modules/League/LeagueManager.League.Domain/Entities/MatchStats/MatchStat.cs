@@ -1,15 +1,15 @@
-﻿using LeagueManager.Shared.Abstractions.Domain;
+﻿using LeagueManager.Domain.Entities.Teams;
+using LeagueManager.League.Domain.Entities.Players;
 
 namespace LeagueManager.League.Domain.Entities.MatchStats;
-public sealed class MatchStat : IEntity
+public sealed class MatchStat : Entity<MatchStatId>
 {
-    public Guid Id { get; }
-    public Guid PlayerId { get; }
-    public Guid TeamId { get; }
+    public PlayerId PlayerId { get; }
+    public TeamId TeamId { get; }
     public MatchStatType StatType { get; }
     public int Minute { get; }
 
-    public MatchStat(Guid playerId, Guid teamId, MatchStatType statType, int minute)
+    public MatchStat(PlayerId playerId, TeamId teamId, MatchStatType statType, int minute)
     {
         PlayerId = playerId;
         TeamId = teamId;
@@ -17,3 +17,4 @@ public sealed class MatchStat : IEntity
         Minute = minute;
     }
 }
+public sealed record MatchStatId(Guid Value) : IValueObject;

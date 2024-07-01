@@ -1,12 +1,10 @@
-﻿using LeagueManager.League.Domain.ValuesObjects;
-using LeagueManager.Shared.Abstractions.Domain;
+﻿using LeagueManager.Domain.Entities.Teams;
+using LeagueManager.League.Domain.ValuesObjects;
 
 namespace LeagueManager.League.Domain.Entities.TeamsInSeasons;
-public class TeamInSeason : IEntity
+public class TeamInSeason : Entity<TeamInSeasonId>
 {
-    public Guid Id { get; }
-
-    public Guid TeamId { get; }
+    public TeamId TeamId { get; }
 
     public int Won { get; private set; }
 
@@ -18,15 +16,16 @@ public class TeamInSeason : IEntity
 
     public int SeasonPoints => CalculateSeasonPoints();
 
-    internal TeamInSeason(Guid teamId)
+    internal TeamInSeason(TeamId teamId)
     {
         TeamId = teamId;
     }
 
-    public DomainValidationResult WinGame(MatchesPoints goals) {
+    public DomainValidationResult WinGame(MatchesPoints goals)
+    {
         Won += 1;
         MatechesPoints += goals;
-        return new DomainValidationResult(); 
+        return new DomainValidationResult();
     }
 
     public DomainValidationResult LooseGame(MatchesPoints goals)
@@ -50,3 +49,4 @@ public class TeamInSeason : IEntity
         return Won * 3 + Drawn;
     }
 }
+public sealed record TeamInSeasonId(Guid Value) : IValueObject;

@@ -1,8 +1,8 @@
-﻿using LeagueManager.Statistics.Infrastructure.Persistence;
-using Microsoft.Extensions.DependencyInjection;
-using LeagueManager.Shared.Infrastructure.Configuration;
-using Elastic.Clients.Elasticsearch;
+﻿using Elastic.Clients.Elasticsearch;
 using Elastic.Transport;
+using LeagueManager.Shared.Infrastructure.Configuration;
+using LeagueManager.Statistics.Infrastructure.Persistence;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace LeagueManager.Statistics.Infrastructure;
 public static class Extensions

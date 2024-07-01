@@ -1,7 +1,7 @@
 ﻿using LeagueManager.Domain.Exceptions;
 
 namespace LeagueManager.Domain.ValuesObjects;
-public sealed record DateRange
+public sealed record DateRange : IValueObject
 {
     public DateOnly StartDate { get; }
     public DateOnly EndDate { get; }

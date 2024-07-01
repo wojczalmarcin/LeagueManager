@@ -1,6 +1,4 @@
-﻿using LeagueManager.Shared.Abstractions.Domain;
-
-namespace LeagueManager.Domain.Exceptions;
+﻿namespace LeagueManager.Domain.Exceptions;
 
 [Serializable]
 internal class TeamsIdsEqualException : DomainValidationException

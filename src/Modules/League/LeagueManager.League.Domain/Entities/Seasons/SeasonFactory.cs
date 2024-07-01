@@ -1,5 +1,5 @@
-﻿using LeagueManager.Domain.ValuesObjects;
-using LeagueManager.Shared.Abstractions.Domain;
+﻿using LeagueManager.Domain.Entities.Teams;
+using LeagueManager.Domain.ValuesObjects;
 using OneOf;
 
 namespace LeagueManager.Domain.Entities.Seasons;
@@ -12,8 +12,8 @@ internal sealed class SeasonFactory : ISeasonFactory
         _seasonDatesValidator = seasonDatesValidator;
     }
 
-    public async Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate, 
-        IEnumerable<Guid> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
+    public async Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate,
+        IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
     {
         try
         {

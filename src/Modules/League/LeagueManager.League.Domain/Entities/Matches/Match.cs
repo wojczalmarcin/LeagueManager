@@ -1,16 +1,15 @@
-﻿using LeagueManager.Domain.Exceptions;
+﻿using LeagueManager.Domain.Entities.Teams;
+using LeagueManager.Domain.Exceptions;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Domain.Entities.MatchStats;
-using LeagueManager.Shared.Abstractions.Domain;
+using LeagueManager.League.Domain.Entities.Players;
 
 namespace LeagueManager.Domain.Entities.Matches;
-public sealed class Match : IEntity
+public sealed class Match : Entity<MatchId>
 {
-    public Guid Id { get; }
+    public TeamId TeamHomeId { get; }
 
-    public Guid TeamHomeId { get; }
-
-    public Guid TeamAwayId { get; }
+    public TeamId TeamAwayId { get; }
 
     public SeasonFixture Fixture { get; }
 
@@ -31,7 +30,7 @@ public sealed class Match : IEntity
 
     private readonly List<MatchStat> _matchstats;
 
-    internal Match(Guid teamHomeId, Guid teamAwayId, SeasonFixture fixture, TimeProvider timeProvider)
+    internal Match(TeamId teamHomeId, TeamId teamAwayId, SeasonFixture fixture, TimeProvider timeProvider)
     {
         if (teamHomeId == teamAwayId)
             throw new TeamsIdsEqualException("Match cannot have home team same as away team.");
@@ -55,9 +54,9 @@ public sealed class Match : IEntity
         if (date < _timeProvider.GetLocalNow())
             result.ValidationErrors.Add(League.Domain.Entities.Matches.MatchMessages.MatchDateValidation);
 
-        if(result.IsValid)
+        if (result.IsValid)
             Date = date;
-        
+
         return result;
     }
 
@@ -69,7 +68,7 @@ public sealed class Match : IEntity
     /// <param name="statType">Stat type.</param>
     /// <param name="minute">Minute of the statistic.</param>
     /// <returns>Validation result of this operation.</returns>
-    public DomainValidationResult AddMatchStat(Guid playerId, Guid teamId, MatchStatType statType, int minute)
+    public DomainValidationResult AddMatchStat(PlayerId playerId, TeamId teamId, MatchStatType statType, int minute)
     {
         var result = new DomainValidationResult();
         _matchstats.Add(new MatchStat(playerId, teamId, statType, minute));
@@ -84,3 +83,5 @@ public sealed class Match : IEntity
         return result;
     }
 }
+
+public sealed record MatchId(Guid Value) : IValueObject;

@@ -4,9 +4,9 @@ using LeagueManager.League.Domain.Entities.Teams;
 using LeagueManager.League.Infrastructure.Mappers;
 using LeagueManager.League.Infrastructure.Persistence;
 using LeagueManager.League.Infrastructure.Persistence.Repositories;
+using LeagueManager.Shared.Infrastructure.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using LeagueManager.Shared.Infrastructure.Configuration;
 
 namespace LeagueManager.League.Infrastructure;
 public static class Extensions

@@ -1,6 +1,4 @@
-﻿using LeagueManager.Shared.Abstractions.Domain;
-
-namespace LeagueManager.League.Domain.Entities.MatchStats;
+﻿namespace LeagueManager.League.Domain.Entities.MatchStats;
 public sealed class MatchStatType : IEntity
 {
     public Guid Id { get; }

@@ -1,0 +1,1 @@
+﻿global using LeagueManager.Shared.Abstractions.Domain;

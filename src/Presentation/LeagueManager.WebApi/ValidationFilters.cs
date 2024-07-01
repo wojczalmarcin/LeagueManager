@@ -22,7 +22,7 @@ public static class ValidationFilters
                         new ValidationContext<object>(invocationContext.Arguments[paramIndex]!));
                     finalVlidationResult.Errors.AddRange(result.Errors);
                 }
-                
+
                 if (!finalVlidationResult.IsValid)
                 {
                     return Results.ValidationProblem(finalVlidationResult.ToDictionary());

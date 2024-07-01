@@ -1,6 +1,4 @@
-﻿using LeagueManager.Shared.Abstractions.Domain;
-
-namespace LeagueManager.League.Domain.Entities.Teams;
+﻿namespace LeagueManager.League.Domain.Entities.Teams;
 internal class TeamValidator : ITeamValidator
 {
     private readonly ITeamRepository _teamRepository;
@@ -16,7 +14,7 @@ internal class TeamValidator : ITeamValidator
         var result = new DomainValidationResult();
         if (teams.Any(x => x.Name.ToLower().Replace(" ", string.Empty) == teamName.ToLower().Replace(" ", string.Empty)))
             result.ValidationErrors.Add(string.Format(TeamMessages.TeamExistenceValidation, teamName));
-            
+
         return result;
     }
 }

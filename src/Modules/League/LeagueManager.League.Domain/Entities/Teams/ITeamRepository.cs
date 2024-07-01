@@ -5,7 +5,7 @@ public interface ITeamRepository
 {
     Task<IReadOnlyList<Team>> GetAsync();
 
-    Task<IReadOnlyList<Team>> GetAsync(IEnumerable<Guid> teamsIds);
+    Task<IReadOnlyList<Team>> GetAsync(IEnumerable<TeamId> teamsIds);
 
-    Task<Team> GetAsync(Guid teamId);
+    Task<Team> GetAsync(TeamId teamId);
 }

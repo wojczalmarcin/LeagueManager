@@ -1,5 +1,5 @@
 ﻿namespace LeagueManager.Domain.ValuesObjects;
-public sealed record SeasonFixture
+public sealed record SeasonFixture : IValueObject
 {
     public int Number { get; set; }
 

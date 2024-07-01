@@ -1,5 +1,6 @@
 ﻿using FluentValidation.Results;
 using LeagueManager.Domain.Entities.Seasons;
+using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Application;
 using LeagueManager.Shared.Abstractions.Domain;
@@ -9,7 +10,7 @@ namespace LeagueManager.Application.Seasons;
 public record CreateSeasonCommand(
     DateTime StartDate,
     DateTime EndDate,
-    IEnumerable<Guid> TeamsIds,
+    IEnumerable<TeamId> TeamsIds,
     string? SponsorName) : IRequest<ValidationResult>;
 
 public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, ValidationResult>
@@ -25,8 +26,10 @@ public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, V
 
     public async Task<ValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
     {
-        var result = await _seasonFactory.CreateAsync(DateOnly.FromDateTime(request.StartDate), DateOnly.FromDateTime(request.EndDate),
-            request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null);
+        var result = await _seasonFactory.CreateAsync(
+            DateOnly.FromDateTime(request.StartDate), 
+            DateOnly.FromDateTime(request.EndDate), 
+            request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
 
         var validationResult = new DomainValidationResult();
 

@@ -1,22 +1,17 @@
 ﻿using LeagueManager.Domain.Entities.Matches;
+using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Domain.Entities.Seasons;
 using LeagueManager.League.Domain.Entities.TeamsInSeasons;
 using LeagueManager.League.Domain.ValuesObjects;
-using LeagueManager.Shared.Abstractions.Domain;
 
 namespace LeagueManager.Domain.Entities.Seasons;
 
 /// <summary>
 /// Season agregate root class.
 /// </summary>
-public sealed class Season : IAgregateRoot
+public sealed class Season : AgregateRoot<SeasonId>
 {
-    /// <summary>
-    /// Gets the season identifier.
-    /// </summary>
-    public Guid Id { get; }
-
     /// <summary>
     /// Gets date range showing how long season will last.
     /// </summary>
@@ -39,7 +34,7 @@ public sealed class Season : IAgregateRoot
     /// Gets the season name.
     /// </summary>
     public string Name => $"{DateRange.StartDate.Year}/{DateRange.EndDate.Year}";
-    
+
     /// <summary>
     /// Gets all season matches.
     /// </summary>
@@ -54,7 +49,7 @@ public sealed class Season : IAgregateRoot
 
     private readonly List<TeamInSeason> _teams;
 
-    internal Season(DateRange dateRange, IEnumerable<Guid> teamsIds, Sponsor? sponsor = null)
+    internal Season(DateRange dateRange, IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null)
     {
         DateRange = dateRange;
         Sponsor = sponsor;
@@ -78,7 +73,7 @@ public sealed class Season : IAgregateRoot
         if (_matches.Any(x => x.TeamHomeId == match.TeamHomeId && x.TeamAwayId == match.TeamAwayId))
             result.ValidationErrors.Add(SeasonMessages.MatchFixtureValidation);
 
-        if(match.Fixture.Number > FixturesCount)
+        if (match.Fixture.Number > FixturesCount)
             result.ValidationErrors.Add(SeasonMessages.FixtureNumberValidation);
 
         if (result.IsValid)
@@ -92,20 +87,20 @@ public sealed class Season : IAgregateRoot
     /// </summary>
     /// <param name="matchId">Match identifier.</param>
     /// <returns>Validation result of this operation.</returns>
-    public DomainValidationResult FinishMatch(Guid matchId)
+    public DomainValidationResult FinishMatch(MatchId matchId)
     {
         var result = new DomainValidationResult();
         var match = _matches.First(x => x.Id == matchId);
 
-        var teamHome = _teams.First(x => x.Id == match.TeamHomeId);
-        var teamAway = _teams.First(x => x.Id == match.TeamAwayId);
+        var teamHome = _teams.First(x => x.TeamId == match.TeamHomeId);
+        var teamAway = _teams.First(x => x.TeamId == match.TeamAwayId);
 
-        if(match.AwayTeamPoints > match.HomeTeamPoints)
+        if (match.AwayTeamPoints > match.HomeTeamPoints)
         {
             result.AddResult(teamAway.WinGame(new MatchesPoints(match.AwayTeamPoints, match.HomeTeamPoints)));
             result.AddResult(teamHome.LooseGame(new MatchesPoints(match.HomeTeamPoints, match.AwayTeamPoints)));
         }
-        else if(match.AwayTeamPoints < match.HomeTeamPoints)
+        else if (match.AwayTeamPoints < match.HomeTeamPoints)
         {
             result.AddResult(teamHome.WinGame(new MatchesPoints(match.HomeTeamPoints, match.AwayTeamPoints)));
             result.AddResult(teamAway.LooseGame(new MatchesPoints(match.AwayTeamPoints, match.HomeTeamPoints)));
@@ -121,3 +116,5 @@ public sealed class Season : IAgregateRoot
         return result;
     }
 }
+
+public sealed record SeasonId(Guid Value) : IValueObject;
