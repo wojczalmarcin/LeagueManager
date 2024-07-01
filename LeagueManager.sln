@@ -25,11 +25,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.WebApi", "src
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.League.Infrastructure", "src\Modules\League\LeagueManager.League.Infrastructure\LeagueManager.League.Infrastructure.csproj", "{48ADEB7C-3A55-4B28-923D-E6EC0A9D514E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Archive", "Archive", "{9298AF00-E911-41E6-9DEB-774D0A029E24}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistics", "Statistics", "{9298AF00-E911-41E6-9DEB-774D0A029E24}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FA9D2B60-DA65-4AD7-9823-8C9033F33DC3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.Shared.Infrastructure", "..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj", "{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Shared.Infrastructure", "..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj", "{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.League.Shared", "src\Modules\League\LeagueManager.League.Shared\LeagueManager.League.Shared.csproj", "{D12F780E-3484-4DF8-8218-0FF181C28F8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.Statistics.Application", "src\Modules\Statistics\LeagueManager.Statistics.Application\LeagueManager.Statistics.Application.csproj", "{1EA4425B-D297-4FB0-A6BD-B6832950A62F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.Statistics.Infrastructure", "src\Modules\Statistics\LeagueManager.Statistics.Infrastructure\LeagueManager.Statistics.Infrastructure.csproj", "{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +75,18 @@ Global
 		{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12F780E-3484-4DF8-8218-0FF181C28F8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12F780E-3484-4DF8-8218-0FF181C28F8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12F780E-3484-4DF8-8218-0FF181C28F8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12F780E-3484-4DF8-8218-0FF181C28F8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EA4425B-D297-4FB0-A6BD-B6832950A62F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EA4425B-D297-4FB0-A6BD-B6832950A62F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EA4425B-D297-4FB0-A6BD-B6832950A62F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EA4425B-D297-4FB0-A6BD-B6832950A62F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +104,9 @@ Global
 		{48ADEB7C-3A55-4B28-923D-E6EC0A9D514E} = {D9C8A964-A753-41F5-A917-745CF8435CBD}
 		{9298AF00-E911-41E6-9DEB-774D0A029E24} = {6688F605-7634-45DE-B512-63FAE50FDF13}
 		{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7} = {61E24DBE-FEB5-44FC-88B8-98A4A3B3BAFC}
+		{D12F780E-3484-4DF8-8218-0FF181C28F8B} = {D9C8A964-A753-41F5-A917-745CF8435CBD}
+		{1EA4425B-D297-4FB0-A6BD-B6832950A62F} = {9298AF00-E911-41E6-9DEB-774D0A029E24}
+		{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF} = {9298AF00-E911-41E6-9DEB-774D0A029E24}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D9A48C1A-D5DD-4460-B2EF-A619CC8CB05B}
