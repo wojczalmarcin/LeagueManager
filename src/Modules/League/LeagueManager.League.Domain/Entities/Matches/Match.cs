@@ -30,7 +30,7 @@ public sealed class Match : Entity<MatchId>
 
     private readonly List<MatchStat> _matchstats;
 
-    internal Match(TeamId teamHomeId, TeamId teamAwayId, SeasonFixture fixture, TimeProvider timeProvider)
+    internal Match(TeamId teamHomeId, TeamId teamAwayId, SeasonFixture fixture, TimeProvider timeProvider) : base()
     {
         if (teamHomeId == teamAwayId)
             throw new TeamsIdsEqualException("Match cannot have home team same as away team.");
@@ -84,4 +84,4 @@ public sealed class Match : Entity<MatchId>
     }
 }
 
-public sealed record MatchId(Guid Value) : IValueObject;
+public sealed record MatchId() : UlidId;

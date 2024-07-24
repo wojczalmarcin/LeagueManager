@@ -14,7 +14,7 @@ public sealed class Team : AgregateRoot<TeamId>
 
     private readonly List<PlayerId> _playersIds;
 
-    internal Team(string name, Address address, Stadium stadium)
+    internal Team(string name, Address address, Stadium stadium) : base()
     {
         Address = address;
         Stadium = stadium;
@@ -31,4 +31,4 @@ public sealed class Team : AgregateRoot<TeamId>
     }
 }
 
-public sealed record TeamId(Guid Value) : IValueObject;
+public sealed record TeamId() : UlidId;

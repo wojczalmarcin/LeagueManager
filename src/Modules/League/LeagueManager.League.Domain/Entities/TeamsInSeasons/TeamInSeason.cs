@@ -16,7 +16,7 @@ public class TeamInSeason : Entity<TeamInSeasonId>
 
     public int SeasonPoints => CalculateSeasonPoints();
 
-    internal TeamInSeason(TeamId teamId)
+    internal TeamInSeason(TeamId teamId) : base()
     {
         TeamId = teamId;
     }
@@ -49,4 +49,4 @@ public class TeamInSeason : Entity<TeamInSeasonId>
         return Won * 3 + Drawn;
     }
 }
-public sealed record TeamInSeasonId(Guid Value) : IValueObject;
+public sealed record TeamInSeasonId() : UlidId;

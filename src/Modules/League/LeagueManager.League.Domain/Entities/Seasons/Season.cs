@@ -49,12 +49,11 @@ public sealed class Season : AgregateRoot<SeasonId>
 
     private readonly List<TeamInSeason> _teams;
 
-    internal Season(DateRange dateRange, IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null)
+    internal Season(DateRange dateRange, IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null) : base()
     {
         DateRange = dateRange;
         Sponsor = sponsor;
         _matches = [];
-
         _teams = [];
         foreach (var teamId in teamsIds)
         {
@@ -117,4 +116,4 @@ public sealed class Season : AgregateRoot<SeasonId>
     }
 }
 
-public sealed record SeasonId(Guid Value) : IValueObject;
+public sealed record SeasonId() : UlidId;

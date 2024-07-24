@@ -9,7 +9,7 @@ public sealed class MatchStat : Entity<MatchStatId>
     public MatchStatType StatType { get; }
     public int Minute { get; }
 
-    public MatchStat(PlayerId playerId, TeamId teamId, MatchStatType statType, int minute)
+    public MatchStat(PlayerId playerId, TeamId teamId, MatchStatType statType, int minute) : base()
     {
         PlayerId = playerId;
         TeamId = teamId;
@@ -17,4 +17,4 @@ public sealed class MatchStat : Entity<MatchStatId>
         Minute = minute;
     }
 }
-public sealed record MatchStatId(Guid Value) : IValueObject;
+public sealed record MatchStatId() : UlidId;

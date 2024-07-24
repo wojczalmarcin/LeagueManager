@@ -1,4 +1,4 @@
 ﻿namespace LeagueManager.Shared.Abstractions.Domain;
-public abstract class AgregateRoot<TId> : Entity<TId>
+public abstract class AgregateRoot<TId> : Entity<TId> where TId : new()
 {
 }
