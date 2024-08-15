@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Entities\Matches\MatchMessages.Designer.cs">
+    <Compile Update="Entities\Seasons\Matches\MatchMessages.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>MatchMessages.resx</DependentUpon>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Entities\Matches\MatchMessages.resx">
+    <EmbeddedResource Update="Entities\Seasons\Matches\MatchMessages.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>MatchMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>

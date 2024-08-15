@@ -1,8 +1,8 @@
-﻿using LeagueManager.Domain.Entities.Matches;
-using LeagueManager.Domain.Entities.Teams;
+﻿using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Domain.Entities.Seasons;
-using LeagueManager.League.Domain.Entities.TeamsInSeasons;
+using LeagueManager.League.Domain.Entities.Seasons.Matches;
+using LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 using LeagueManager.League.Domain.ValuesObjects;
 
 namespace LeagueManager.Domain.Entities.Seasons;

@@ -1,7 +1,7 @@
 ﻿using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.League.Domain.ValuesObjects;
 
-namespace LeagueManager.League.Domain.Entities.TeamsInSeasons;
+namespace LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 public class TeamInSeason : Entity<TeamInSeasonId>
 {
     public TeamId TeamId { get; }

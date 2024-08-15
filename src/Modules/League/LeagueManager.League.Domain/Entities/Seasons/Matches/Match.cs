@@ -1,10 +1,10 @@
 ﻿using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.Exceptions;
 using LeagueManager.Domain.ValuesObjects;
-using LeagueManager.League.Domain.Entities.MatchStats;
 using LeagueManager.League.Domain.Entities.Players;
+using LeagueManager.League.Domain.Entities.Seasons.MatchStats;
 
-namespace LeagueManager.Domain.Entities.Matches;
+namespace LeagueManager.League.Domain.Entities.Seasons.Matches;
 public sealed class Match : Entity<MatchId>
 {
     public TeamId TeamHomeId { get; }
@@ -52,7 +52,7 @@ public sealed class Match : Entity<MatchId>
     {
         var result = new DomainValidationResult();
         if (date < _timeProvider.GetLocalNow())
-            result.ValidationErrors.Add(League.Domain.Entities.Matches.MatchMessages.MatchDateValidation);
+            result.ValidationErrors.Add(MatchMessages.MatchDateValidation);
 
         if (result.IsValid)
             Date = date;

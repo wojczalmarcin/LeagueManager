@@ -1,4 +1,4 @@
-﻿namespace LeagueManager.League.Domain.Entities.MatchStats;
+﻿namespace LeagueManager.League.Domain.Entities.Seasons.MatchStats;
 public sealed class MatchStatType : Entity<MatchStatTypeId>
 {
     public string Name { get; }

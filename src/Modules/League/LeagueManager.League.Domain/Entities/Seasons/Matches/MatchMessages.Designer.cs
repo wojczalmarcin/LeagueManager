@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LeagueManager.League.Domain.Entities.Matches {
+namespace LeagueManager.League.Domain.Entities.Seasons.Matches {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace LeagueManager.League.Domain.Entities.Matches {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LeagueManager.League.Domain.Entities.Matches.MatchMessages", typeof(MatchMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("LeagueManager.League.Domain.Entities.Seasons.Matches.MatchMessages", typeof(MatchMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

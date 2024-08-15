@@ -1,7 +1,7 @@
 ﻿using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.League.Domain.Entities.Players;
 
-namespace LeagueManager.League.Domain.Entities.MatchStats;
+namespace LeagueManager.League.Domain.Entities.Seasons.MatchStats;
 public sealed class MatchStat : Entity<MatchStatId>
 {
     public PlayerId PlayerId { get; }

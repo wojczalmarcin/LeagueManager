@@ -1,5 +1,5 @@
 ﻿using LeagueManager.Domain.Entities.Seasons;
-using LeagueManager.League.Domain.Entities.TeamsInSeasons;
+using LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 
 namespace LeagueManager.League.Application.Seasons;
 public interface ISeasonContractMapper
