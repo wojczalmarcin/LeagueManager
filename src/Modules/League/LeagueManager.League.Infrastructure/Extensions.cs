@@ -5,6 +5,7 @@ using LeagueManager.League.Infrastructure.Mappers;
 using LeagueManager.League.Infrastructure.Persistence;
 using LeagueManager.League.Infrastructure.Persistence.Repositories;
 using LeagueManager.Shared.Infrastructure.Configuration;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,5 +22,14 @@ public static class Extensions
 
         services.AddScoped<ISeasonContractMapper, SeasonContractMapper>();
         return services;
+    }
+
+    public static void ApplyDatabaseMigrations(this IApplicationBuilder app)
+    {
+        using var scope = app.ApplicationServices.CreateScope();
+
+        using var dbContext = scope.ServiceProvider.GetRequiredService<LeagueDbContext>();
+
+        dbContext.Database.Migrate();
     }
 }

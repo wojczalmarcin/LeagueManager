@@ -4,23 +4,24 @@ using LeagueManager.League.Domain.Entities.Seasons;
 using LeagueManager.League.Domain.Entities.Seasons.Matches;
 using LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 using LeagueManager.League.Domain.ValuesObjects;
+using OneOf;
 
 namespace LeagueManager.Domain.Entities.Seasons;
 
 /// <summary>
 /// Season agregate root class.
 /// </summary>
-public sealed class Season : AgregateRoot<SeasonId>
+public sealed class Season : AgregateRoot<SeasonId, Ulid>
 {
     /// <summary>
     /// Gets date range showing how long season will last.
     /// </summary>
-    public DateRange DateRange { get; private set; }
+    public DateRange DateRange { get; private init; }
 
     /// <summary>
     /// Gets the season sponsor if any.
     /// </summary>
-    public Sponsor? Sponsor { get; private set; }
+    public Sponsor? Sponsor { get; private init; }
 
     /// <summary>
     /// Gets teams in the season.
@@ -49,15 +50,38 @@ public sealed class Season : AgregateRoot<SeasonId>
 
     private readonly List<TeamInSeason> _teams;
 
-    internal Season(DateRange dateRange, IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null) : base()
+    private Season(SeasonId id, DateRange dateRange, IEnumerable<TeamInSeason> teamInSeasons, Sponsor? sponsor = null) : base(id)
     {
         DateRange = dateRange;
         Sponsor = sponsor;
         _matches = [];
-        _teams = [];
-        foreach (var teamId in teamsIds)
+        _teams = teamInSeasons.ToList();
+    }
+
+    public static OneOf<Season, DomainValidationResult> Create(DateOnly startDate, DateOnly endDate,
+        IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
+    {
+        try
         {
-            _teams.Add(new TeamInSeason(teamId));
+            var dateRange = new DateRange(startDate, endDate);
+            //var validator = new SeasonValidator()
+            //var datesResult = await _seasonDatesValidator.ValidateDateRangeAsync(dateRange);
+            //if (datesResult.IsValid)
+            //{
+            //    var season = new Season(new SeasonId(Ulid.NewUlid()), dateRange, teamsIds, sponsor);
+            //}
+
+            var teams = new List<TeamInSeason>();
+            foreach (var teamId in teamsIds)
+            {
+                teams.Add(new TeamInSeason(new TeamInSeasonId(Ulid.NewUlid()), teamId));
+            }
+
+            return new Season(new SeasonId(Ulid.NewUlid()), dateRange, teams, sponsor);
+        }
+        catch (DomainValidationException ex)
+        {
+            return new DomainValidationResult([ex.Message]);
         }
     }
 
@@ -114,6 +138,12 @@ public sealed class Season : AgregateRoot<SeasonId>
         result.AddResult(finishResult);
         return result;
     }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Season() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+    }
 }
 
-public sealed record SeasonId() : UlidId;
+public sealed record SeasonId(Ulid Value) : DomainId<Ulid>(Value);

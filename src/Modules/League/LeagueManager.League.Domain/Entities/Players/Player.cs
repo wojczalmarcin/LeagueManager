@@ -7,10 +7,10 @@ public sealed class Player : AgregateRoot<PlayerId>
 {
     public PersonalInfo PersonalInfo { get; }
 
-    public Player(PersonalInfo personalInfo) : base()
+    public Player(PlayerId id, PersonalInfo personalInfo) : base(id)
     {
         PersonalInfo = personalInfo;
     }
 }
 
-public sealed record PlayerId() : UlidId;
+public sealed record PlayerId(Ulid Value) : DomainId<Ulid>(Value);

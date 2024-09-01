@@ -33,7 +33,7 @@ public sealed class GetSeasonTableQueryHandler : IRequestHandler<GetSeasonTableQ
 
         foreach (var item in table.Teams)
         {
-            item.Team.Name = teams.First(x => x.Id.Value == item.Team.Id).Name;
+            item.Team.Name = teams.First(x => x.Id.Value.ToGuid() == item.Team.Id).Name;
         }
         return table;
     }

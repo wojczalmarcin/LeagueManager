@@ -26,10 +26,12 @@ public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, V
 
     public async Task<ValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
     {
-        var result = await _seasonFactory.CreateAsync(
-            DateOnly.FromDateTime(request.StartDate), 
-            DateOnly.FromDateTime(request.EndDate), 
+        var result = Season.Create(DateOnly.FromDateTime(request.StartDate), DateOnly.FromDateTime(request.EndDate),
             request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
+        //var result = await _seasonFactory.CreateAsync(
+        //    DateOnly.FromDateTime(request.StartDate), 
+        //    DateOnly.FromDateTime(request.EndDate), 
+        //    request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
 
         var validationResult = new DomainValidationResult();
 

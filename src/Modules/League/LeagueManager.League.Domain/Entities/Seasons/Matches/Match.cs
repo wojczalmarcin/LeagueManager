@@ -5,7 +5,7 @@ using LeagueManager.League.Domain.Entities.Players;
 using LeagueManager.League.Domain.Entities.Seasons.MatchStats;
 
 namespace LeagueManager.League.Domain.Entities.Seasons.Matches;
-public sealed class Match : Entity<MatchId>
+public sealed class Match : Entity<MatchId, Ulid>
 {
     public TeamId TeamHomeId { get; }
 
@@ -30,7 +30,7 @@ public sealed class Match : Entity<MatchId>
 
     private readonly List<MatchStat> _matchstats;
 
-    internal Match(TeamId teamHomeId, TeamId teamAwayId, SeasonFixture fixture, TimeProvider timeProvider) : base()
+    internal Match(MatchId id, TeamId teamHomeId, TeamId teamAwayId, SeasonFixture fixture, TimeProvider timeProvider) : base(id)
     {
         if (teamHomeId == teamAwayId)
             throw new TeamsIdsEqualException("Match cannot have home team same as away team.");
@@ -71,7 +71,7 @@ public sealed class Match : Entity<MatchId>
     public DomainValidationResult AddMatchStat(PlayerId playerId, TeamId teamId, MatchStatType statType, int minute)
     {
         var result = new DomainValidationResult();
-        _matchstats.Add(new MatchStat(playerId, teamId, statType, minute));
+        _matchstats.Add(new MatchStat(new MatchStatId(Ulid.NewUlid()), playerId, teamId, statType, minute));
 
         return result;
     }
@@ -82,6 +82,12 @@ public sealed class Match : Entity<MatchId>
         IsFinished = true;
         return result;
     }
+
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Match() : base()
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    {
+    }
 }
 
-public sealed record MatchId() : UlidId;
+public sealed record MatchId(Ulid Value) : DomainId<Ulid>(Value);

@@ -19,7 +19,7 @@ internal class TeamFactory : ITeamFactory
             var datesResult = await _teamValidator.ValidateTeamExistenceAsync(name);
             if (datesResult.IsValid)
             {
-                var season = new Team(name, address, stadium);
+                var season = new Team(new TeamId(Ulid.NewUlid()), name, address, stadium);
             }
 
             return datesResult;

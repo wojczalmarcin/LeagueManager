@@ -12,23 +12,23 @@ internal sealed class SeasonFactory : ISeasonFactory
         _seasonDatesValidator = seasonDatesValidator;
     }
 
-    public async Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate,
-        IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
-    {
-        try
-        {
-            var dateRange = new DateRange(startDate, endDate);
-            var datesResult = await _seasonDatesValidator.ValidateDateRangeAsync(dateRange);
-            if (datesResult.IsValid)
-            {
-                var season = new Season(dateRange, teamsIds, sponsor);
-            }
-
-            return datesResult;
-        }
-        catch (DomainValidationException ex)
-        {
-            return new DomainValidationResult([ex.Message]);
-        }
-    }
+    //public async Task<OneOf<Season, DomainValidationResult>> CreateAsync(DateOnly startDate, DateOnly endDate,
+    //    IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
+    //{
+    //    try
+    //    {
+    //        var dateRange = new DateRange(startDate, endDate);
+    //        var datesResult = await _seasonDatesValidator.ValidateDateRangeAsync(dateRange);
+    //        if (datesResult.IsValid)
+    //        {
+    //            var season = new Season(new SeasonId(Ulid.NewUlid()), dateRange, teamsIds, sponsor);
+    //        }
+    //
+    //        return datesResult;
+    //    }
+    //    catch (DomainValidationException ex)
+    //    {
+    //        return new DomainValidationResult([ex.Message]);
+    //    }
+    //}
 }
