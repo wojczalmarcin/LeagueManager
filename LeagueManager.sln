@@ -31,11 +31,11 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Shared.Infrastructure", "..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj", "{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.League.Shared", "src\Modules\League\LeagueManager.League.Shared\LeagueManager.League.Shared.csproj", "{D12F780E-3484-4DF8-8218-0FF181C28F8B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.League.Shared", "src\Modules\League\LeagueManager.League.Shared\LeagueManager.League.Shared.csproj", "{D12F780E-3484-4DF8-8218-0FF181C28F8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.Statistics.Application", "src\Modules\Statistics\LeagueManager.Statistics.Application\LeagueManager.Statistics.Application.csproj", "{1EA4425B-D297-4FB0-A6BD-B6832950A62F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Statistics.Application", "src\Modules\Statistics\LeagueManager.Statistics.Application\LeagueManager.Statistics.Application.csproj", "{1EA4425B-D297-4FB0-A6BD-B6832950A62F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeagueManager.Statistics.Infrastructure", "src\Modules\Statistics\LeagueManager.Statistics.Infrastructure\LeagueManager.Statistics.Infrastructure.csproj", "{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Statistics.Infrastructure", "src\Modules\Statistics\LeagueManager.Statistics.Infrastructure\LeagueManager.Statistics.Infrastructure.csproj", "{0A9638F8-C78B-4F68-80EE-0559DD9EC5FF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

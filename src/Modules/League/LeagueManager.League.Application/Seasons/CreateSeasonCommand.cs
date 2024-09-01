@@ -3,7 +3,6 @@ using LeagueManager.Domain.Entities.Seasons;
 using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Application;
-using LeagueManager.Shared.Abstractions.Domain;
 using MediatR;
 
 namespace LeagueManager.Application.Seasons;
@@ -15,30 +14,25 @@ public record CreateSeasonCommand(
 
 public class CreateSeasonCommandHandler : IRequestHandler<CreateSeasonCommand, ValidationResult>
 {
-    private readonly ISeasonFactory _seasonFactory;
     private readonly ISeasonRepository _seasonRepository;
 
-    public CreateSeasonCommandHandler(ISeasonFactory seasonFactory, ISeasonRepository seasonRepository)
+    public CreateSeasonCommandHandler(ISeasonRepository seasonRepository)
     {
-        _seasonFactory = seasonFactory;
         _seasonRepository = seasonRepository;
     }
 
     public async Task<ValidationResult> Handle(CreateSeasonCommand request, CancellationToken cancellationToken)
     {
+        var allSeasons = await _seasonRepository.GetAsync(cancellationToken);
         var result = Season.Create(DateOnly.FromDateTime(request.StartDate), DateOnly.FromDateTime(request.EndDate),
-            request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
-        //var result = await _seasonFactory.CreateAsync(
-        //    DateOnly.FromDateTime(request.StartDate), 
-        //    DateOnly.FromDateTime(request.EndDate), 
-        //    request.TeamsIds, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
+            request.TeamsIds, allSeasons, request.SponsorName != null ? new Sponsor(request.SponsorName) : null, cancellationToken);
 
-        var validationResult = new DomainValidationResult();
+        var finalResult = new ValidationResult();
 
         result.Switch(
             async season => await _seasonRepository.CreateAsync(season, cancellationToken),
-            vr => validationResult = vr
+            vr => finalResult = vr.Map()
             );
-        return validationResult.Map();
+        return finalResult;
     }
 }

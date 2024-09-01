@@ -59,18 +59,15 @@ public sealed class Season : AgregateRoot<SeasonId, Ulid>
     }
 
     public static OneOf<Season, DomainValidationResult> Create(DateOnly startDate, DateOnly endDate,
-        IEnumerable<TeamId> teamsIds, Sponsor? sponsor = null, CancellationToken cancellationToken = default)
+        IEnumerable<TeamId> teamsIds, IEnumerable<Season> allSeasons, 
+        Sponsor? sponsor = null, CancellationToken cancellationToken = default)
     {
-        try
-        {
-            var dateRange = new DateRange(startDate, endDate);
-            //var validator = new SeasonValidator()
-            //var datesResult = await _seasonDatesValidator.ValidateDateRangeAsync(dateRange);
-            //if (datesResult.IsValid)
-            //{
-            //    var season = new Season(new SeasonId(Ulid.NewUlid()), dateRange, teamsIds, sponsor);
-            //}
+        var dateRange = new DateRange(startDate, endDate);
 
+        var result = ValidateBusinessRules(new SeasonsCannotBeOverlappedRule(dateRange, allSeasons));
+
+        if (result.IsValid)
+        {
             var teams = new List<TeamInSeason>();
             foreach (var teamId in teamsIds)
             {
@@ -79,10 +76,7 @@ public sealed class Season : AgregateRoot<SeasonId, Ulid>
 
             return new Season(new SeasonId(Ulid.NewUlid()), dateRange, teams, sponsor);
         }
-        catch (DomainValidationException ex)
-        {
-            return new DomainValidationResult([ex.Message]);
-        }
+        return result;
     }
 
     /// <summary>

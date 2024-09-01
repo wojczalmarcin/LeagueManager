@@ -2,29 +2,25 @@
 using LeagueManager.League.Domain.Entities.Seasons;
 
 namespace LeagueManager.Domain.Entities.Seasons;
-internal class SeasonValidator : ISeasonValidator
+internal sealed class SeasonsCannotBeOverlappedRule(DateRange seasonDateRangeToValidate, IEnumerable<Season> existingSeasons) : IDomainValidator
 {
-    private readonly ISeasonRepository _seasonRepository;
+    private readonly DateRange _seasonDateRangeToValidate = seasonDateRangeToValidate;
 
-    public SeasonValidator(ISeasonRepository seasonRepository)
-    {
-        _seasonRepository = seasonRepository;
-    }
+    private readonly IEnumerable<Season> _existingSeasons = existingSeasons;
 
-    public async Task<DomainValidationResult> ValidateDateRangeAsync(DateRange newSeasonDateRange, CancellationToken cancellationToken = default)
+    public DomainValidationResult Validate()
     {
-        var seasons = (await _seasonRepository.GetAsync(cancellationToken)).ToList();
         var result = new DomainValidationResult();
 
-        foreach (var season in seasons)
+        foreach (var season in _existingSeasons)
         {
-            result.ValidationErrors.AddRange(ValidateTwoSeasons(newSeasonDateRange, season));
+            result.ValidationErrors.AddRange(ValidateDateRanges(_seasonDateRangeToValidate, season));
         }
 
         return result;
     }
 
-    private static IList<string> ValidateTwoSeasons(DateRange newSeasonDateRange, Season existingSeason)
+    private static IList<string> ValidateDateRanges(DateRange newSeasonDateRange, Season existingSeason)
     {
         var errors = new List<string>();
 
