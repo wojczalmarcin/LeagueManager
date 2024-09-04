@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Application\LeagueManager.League.Application.csproj" />
     <ProjectReference Include="..\LeagueManager.League.Domain\LeagueManager.League.Domain.csproj" />
   </ItemGroup>

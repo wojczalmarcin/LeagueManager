@@ -16,12 +16,12 @@ public sealed class Season : AgregateRoot<SeasonId, Ulid>
     /// <summary>
     /// Gets date range showing how long season will last.
     /// </summary>
-    public DateRange DateRange { get; private init; }
+    public DateRange DateRange { get; }
 
     /// <summary>
     /// Gets the season sponsor if any.
     /// </summary>
-    public Sponsor? Sponsor { get; private init; }
+    public Sponsor? Sponsor { get; }
 
     /// <summary>
     /// Gets teams in the season.

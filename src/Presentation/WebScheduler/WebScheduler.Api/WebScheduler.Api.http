@@ -1,0 +1,6 @@
+@WebScheduler.Api_HostAddress = http://localhost:5087
+
+GET {{WebScheduler.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

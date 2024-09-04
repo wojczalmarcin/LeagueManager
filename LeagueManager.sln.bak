@@ -29,7 +29,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Statistics", "Statistics", 
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{FA9D2B60-DA65-4AD7-9823-8C9033F33DC3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Shared.Infrastructure", "src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj", "{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.Shared.Infrastructure", "..\src\Shared\LeagueManager.Shared.Infrastructure\LeagueManager.Shared.Infrastructure.csproj", "{2AEEB72D-F6C4-4E41-AE79-9D2BD5012EF7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LeagueManager.League.Shared", "src\Modules\League\LeagueManager.League.Shared\LeagueManager.League.Shared.csproj", "{D12F780E-3484-4DF8-8218-0FF181C28F8B}"
 EndProject
