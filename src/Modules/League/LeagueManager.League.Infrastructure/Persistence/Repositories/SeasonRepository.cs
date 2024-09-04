@@ -1,4 +1,5 @@
 ﻿using LeagueManager.Domain.Entities.Seasons;
+using LeagueManager.League.Application.Seasons.Ports;
 
 namespace LeagueManager.League.Infrastructure.Persistence.Repositories;
 internal sealed class SeasonRepository : ISeasonRepository

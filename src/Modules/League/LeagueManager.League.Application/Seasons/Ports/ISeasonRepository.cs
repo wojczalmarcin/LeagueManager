@@ -1,4 +1,6 @@
-﻿namespace LeagueManager.Domain.Entities.Seasons;
+﻿using LeagueManager.Domain.Entities.Seasons;
+
+namespace LeagueManager.League.Application.Seasons.Ports;
 public interface ISeasonRepository
 {
     /// <summary>

@@ -1,5 +1,5 @@
-﻿using LeagueManager.Domain.Entities.Seasons;
-using LeagueManager.League.Domain.Entities.Teams;
+﻿using LeagueManager.League.Application.Seasons.Ports;
+using LeagueManager.League.Application.Teams.Ports;
 using MediatR;
 
 namespace LeagueManager.League.Application.Seasons;

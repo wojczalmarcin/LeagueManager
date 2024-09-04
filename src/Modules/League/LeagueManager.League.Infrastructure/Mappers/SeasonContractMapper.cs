@@ -1,5 +1,6 @@
 ﻿using LeagueManager.Domain.Entities.Seasons;
 using LeagueManager.League.Application.Seasons;
+using LeagueManager.League.Application.Seasons.Ports;
 using LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 using Riok.Mapperly.Abstractions;
 

@@ -1,5 +1,7 @@
 ﻿using LeagueManager.League.Domain.Entities.Players;
+using LeagueManager.League.Domain.Entities.Teams;
 using LeagueManager.League.Domain.ValuesObjects;
+using OneOf;
 
 namespace LeagueManager.Domain.Entities.Teams;
 public sealed class Team : AgregateRoot<TeamId>
@@ -14,12 +16,24 @@ public sealed class Team : AgregateRoot<TeamId>
 
     private readonly List<PlayerId> _playersIds;
 
-    internal Team(TeamId id, string name, Address address, Stadium stadium) : base(id)
+    private Team(TeamId id, string name, Address address, Stadium stadium) : base(id)
     {
         Address = address;
         Stadium = stadium;
         Name = name;
         _playersIds = [];
+    }
+
+    public static OneOf<Team, DomainValidationResult> Create(string name, Address address, Stadium stadium, IEnumerable<Team> existingTeams)
+    {
+        var result = ValidateBusinessRules(new ValidTeamNameRule(existingTeams, name));
+
+        if (result.IsValid)
+        {
+            return new Team(new TeamId(Ulid.NewUlid()), name, address, stadium);
+        }
+
+        return result;
     }
 
     public DomainValidationResult AddPlayerAsync(Player player)

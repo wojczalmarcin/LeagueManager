@@ -1,7 +1,7 @@
 ﻿using LeagueManager.Domain.Entities.Seasons;
 using LeagueManager.League.Domain.Entities.Seasons.TeamsInSeasons;
 
-namespace LeagueManager.League.Application.Seasons;
+namespace LeagueManager.League.Application.Seasons.Ports;
 public interface ISeasonContractMapper
 {
     public SeasonDto Map(Season season);

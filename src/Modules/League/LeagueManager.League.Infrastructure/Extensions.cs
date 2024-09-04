@@ -1,6 +1,5 @@
-﻿using LeagueManager.Domain.Entities.Seasons;
-using LeagueManager.League.Application.Seasons;
-using LeagueManager.League.Domain.Entities.Teams;
+﻿using LeagueManager.League.Application.Seasons.Ports;
+using LeagueManager.League.Application.Teams.Ports;
 using LeagueManager.League.Infrastructure.Mappers;
 using LeagueManager.League.Infrastructure.Persistence;
 using LeagueManager.League.Infrastructure.Persistence.Repositories;

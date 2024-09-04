@@ -3,6 +3,7 @@ using LeagueManager.Domain.Entities.Seasons;
 using LeagueManager.Domain.Entities.Teams;
 using LeagueManager.Domain.ValuesObjects;
 using LeagueManager.League.Application;
+using LeagueManager.League.Application.Seasons.Ports;
 using MediatR;
 
 namespace LeagueManager.Application.Seasons;

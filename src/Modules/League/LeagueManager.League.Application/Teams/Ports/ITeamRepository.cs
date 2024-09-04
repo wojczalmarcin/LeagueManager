@@ -1,6 +1,6 @@
 ﻿using LeagueManager.Domain.Entities.Teams;
 
-namespace LeagueManager.League.Domain.Entities.Teams;
+namespace LeagueManager.League.Application.Teams.Ports;
 public interface ITeamRepository
 {
     Task<IReadOnlyList<Team>> GetAsync();

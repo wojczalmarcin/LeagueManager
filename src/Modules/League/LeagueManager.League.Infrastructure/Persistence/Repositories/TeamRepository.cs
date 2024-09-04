@@ -1,5 +1,5 @@
 ﻿using LeagueManager.Domain.Entities.Teams;
-using LeagueManager.League.Domain.Entities.Teams;
+using LeagueManager.League.Application.Teams.Ports;
 
 namespace LeagueManager.League.Infrastructure.Persistence.Repositories;
 internal sealed class TeamRepository : ITeamRepository

@@ -44,7 +44,7 @@ public sealed class Season : AgregateRoot<SeasonId, Ulid>
     /// <summary>
     /// Gets season number of fixtures.
     /// </summary>
-    public int FixturesCount => _teams.Count() * (_teams.Count() - 1);
+    public int FixturesCount => _teams.Count * (_teams.Count - 1);
 
     private readonly List<Match> _matches;
 

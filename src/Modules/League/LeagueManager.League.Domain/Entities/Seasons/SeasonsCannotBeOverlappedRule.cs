@@ -2,7 +2,7 @@
 using LeagueManager.League.Domain.Entities.Seasons;
 
 namespace LeagueManager.Domain.Entities.Seasons;
-internal sealed class SeasonsCannotBeOverlappedRule(DateRange seasonDateRangeToValidate, IEnumerable<Season> existingSeasons) : IDomainValidator
+public sealed class SeasonsCannotBeOverlappedRule(DateRange seasonDateRangeToValidate, IEnumerable<Season> existingSeasons) : IDomainValidator
 {
     private readonly DateRange _seasonDateRangeToValidate = seasonDateRangeToValidate;
 
